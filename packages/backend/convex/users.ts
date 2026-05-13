@@ -1,14 +1,12 @@
 import { query, mutation } from "./_generated/server";
 
-export const getMany = query(({ 
+export const getMany = query({
     args: {},
-    handler: async (ctx) => {
+    handler: async (ctx, args) => {
        const users =  await ctx.db.query("users").take(10);
        return users;
     }
- }) 
-    
-)
+});
 
 export const add = mutation({
    args:{},
