@@ -7,7 +7,7 @@ export default function Page() {
   const users = useQuery(api.users.getMany);
   const adduser = useMutation(api.users.add);
   return (
-    <div className="flex flex-colitems-center justify-center min-h-svh">
+    <div className="flex flex-col items-center justify-center min-h-svh">
       <p>apps/web</p>
       <Button onClick={() => adduser({})}>Add</Button>
       <div className="max-w-sm w-full mx-auto">
