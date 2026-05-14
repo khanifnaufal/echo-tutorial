@@ -16,7 +16,7 @@ export const add = mutation({
          throw new Error("Not authenticated");
       }
       const userId = await ctx.db.insert("users", {
-         name: "Antonio",
+         name: identity.name ?? identity.email ?? "Anonymous",
       });
       return userId;
    }
