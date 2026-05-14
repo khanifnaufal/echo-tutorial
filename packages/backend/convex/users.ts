@@ -15,8 +15,15 @@ export const add = mutation({
       if (identity === null) {
          throw new Error("Not authenticated");
       }
+      
+      // Ambil orgId dari property standar atau property 'o' (singkatan Clerk)
+      const orgId = identity.orgId || (identity as any).o?.id;
+
+      if(!orgId){
+         throw new Error("No active organization selected");
+      }
       const userId = await ctx.db.insert("users", {
-         name: identity.name ?? identity.email ?? "Anonymous",
+         name: "antonio",
       });
       return userId;
    }
