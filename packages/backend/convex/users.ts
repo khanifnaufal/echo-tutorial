@@ -1,18 +1,22 @@
 import { query, mutation } from "./_generated/server";
 
 export const getMany = query({
-    args: {},
-    handler: async (ctx, args) => {
-       const users =  await ctx.db.query("users").take(10);
-       return users;
-    }
+   args: {},
+   handler: async (ctx, args) => {
+      const users = await ctx.db.query("users").take(10);
+      return users;
+   }
 });
 
 export const add = mutation({
-   args:{},
+   args: {},
    handler: async (ctx) => {
+      const identity = await ctx.auth.getUserIdentity();
+      if (identity === null) {
+         throw new Error("Not authenticated");
+      }
       const userId = await ctx.db.insert("users", {
-         name: "Antonio",
+         name: identity.name ?? identity.email ?? "Anonymous",
       });
       return userId;
    }
