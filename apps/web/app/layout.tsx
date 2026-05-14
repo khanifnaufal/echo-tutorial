@@ -4,8 +4,9 @@ import "@workspace/ui/globals.css"
 import { ClerkProvider } from '@clerk/nextjs'
 import ConvexClientProvider from "@/components/convex-client-provider";
 import { cn } from "@workspace/ui/lib/utils";
+import { AuthGuard } from "@/modules/auth/ui/components/auth-guard";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
